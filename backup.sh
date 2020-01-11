@@ -6,4 +6,4 @@ if [[ ! -z "${GOOGLE_APPLICATION_CREDENTIALS_JSON}" ]]; then
   gcloud auth activate-service-account --key-file /root/google-credential.json
 fi
 
-tar -zcvf - /data | gsutil cp - gs://$BUCKET/$PREFIX$(date +"%Y%m%d%H%M%S")$SUFFIX.tar.gz
+tar -cvf - /data | gzip | gsutil cp - gs://$BUCKET/$PREFIX$(date +"%Y%m%d%H%M%S")$SUFFIX.tar.gz
